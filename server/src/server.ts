@@ -38,15 +38,16 @@ app.use(AppRouter.getInstance());
 // must be the Last One
 app.use(ErrorHandleMiddleWare);
 
-async function start() {
+async function startServer() {
   await connectMongo();
 
   // App Listing
   app.listen(PORT, () => {
+    console.log("🚀 ~ file: server.ts:46 ~ app.listen ~ PORT:", PORT);
     console.log(
       `🚀 Server Running At ${blueBright(`http://localhost:${PORT}`)}`
     );
   });
 }
 
-start();
+startServer();
