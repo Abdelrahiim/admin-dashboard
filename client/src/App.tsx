@@ -5,8 +5,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "./store/store";
 import { useMemo } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout";
+import { Layout } from "./components";
 import { Navigate } from "react-router-dom";
+import { Dashboard } from "./pages";
 
 function App() {
   const mode = useSelector((state: RootState) => state.global.mode);
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Route>
         </Routes>
       </ThemeProvider>
