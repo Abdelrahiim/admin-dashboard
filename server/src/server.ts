@@ -10,6 +10,9 @@ import { PORT } from "./Utils/settings";
 
 import { connectMongo } from "./Config/database";
 import { blueBright } from "colorette";
+import { User } from "./Models";
+import { Use } from "./decorators";
+import { dataUser } from "./data";
 
 const app = express();
 
@@ -41,13 +44,12 @@ app.use(ErrorHandleMiddleWare);
 async function startServer() {
   await connectMongo();
 
-  // App Listing
   app.listen(PORT, () => {
-    console.log("🚀 ~ file: server.ts:46 ~ app.listen ~ PORT:", PORT);
     console.log(
       `🚀 Server Running At ${blueBright(`http://localhost:${PORT}`)}`
     );
   });
 }
-
 startServer();
+
+// App Listing
