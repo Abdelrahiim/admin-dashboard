@@ -3,11 +3,11 @@ import { getModelForClass, prop, modelOptions } from "@typegoose/typegoose";
 @modelOptions({ schemaOptions: { timestamps: true, collection: "users" } })
 export class UserSchema {
   @prop({ required: true })
-  name?: string;
+  name!: string;
   @prop({ required: true, unique: true })
-  email?: string;
+  email!: string;
   @prop({ required: true })
-  password?: string;
+  password!: string;
   @prop()
   city?: string;
   @prop()
