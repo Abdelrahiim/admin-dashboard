@@ -7,10 +7,12 @@ export enum Mode {
 
 interface GlobalState {
   mode: Mode;
+  userId: string;
 }
 
 const initialState: GlobalState = {
   mode: Mode.Dark,
+  userId: "63701cc1f03239b7f700000e",
 };
 
 export const globalSlice = createSlice({

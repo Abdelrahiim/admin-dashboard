@@ -4,6 +4,7 @@ import { FC } from "react";
 import { NavBarProps } from "./NavBar";
 import {
   Box,
+  Divider,
   // Divider,
   Drawer,
   IconButton,
@@ -32,8 +33,9 @@ import {
   PieChartOutlined,
   ShoppingCartOutlined,
   Groups2Outlined,
+  SettingsOutlined,
 } from "@mui/icons-material";
-
+import profileImage from "../assets/393635635_3537098063168999_981925921939371583_n.jpg";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FlexBetween } from ".";
@@ -107,6 +109,7 @@ const Sidebar: FC<SideBarProps> = ({
   isSidebarOpen,
   setIsSidebarOpen,
   isNonMobile,
+  user,
 }) => {
   // const path
   const { pathname } = useLocation();
@@ -208,6 +211,51 @@ const Sidebar: FC<SideBarProps> = ({
               );
             })}
           </List>
+        </Box>
+        <Box position={"absolute"} bottom={"2rem"}>
+          <Divider />
+          <FlexBetween
+            textTransform={"none"}
+            gap={"1rem"}
+            m={"1.5rem 2rem 0rem 3rem"}
+          >
+            <Box
+              component={"img"}
+              alt="profile"
+              src={profileImage}
+              height={"40px"}
+              width={"40px"}
+              borderRadius={"50%"}
+              sx={{ objectFit: "cover" }}
+            />
+            <Box textAlign={"left"}>
+              <Typography
+                fontWeight={"bold"}
+                fontSize={"0.9rem"}
+                sx={{
+                  //@ts-ignore
+                  color: theme.palette.secondary[200],
+                }}
+              >
+                {user?.name}
+              </Typography>
+              <Typography
+                fontSize={"0.8rem"}
+                sx={{
+                  //@ts-ignore
+                  color: theme.palette.secondary[200],
+                }}
+              >
+                {user?.occupation}
+              </Typography>
+            </Box>
+            <SettingsOutlined
+              sx={{
+                // @ts-ignore
+                color: theme.palette.secondary[300],
+              }}
+            />
+          </FlexBetween>
         </Box>
       </Drawer>
       {/* </animated.div> */}
