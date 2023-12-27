@@ -19,7 +19,6 @@ const Layout = () => {
   const userId = useSelector((state: RootState) => state.global.userId);
 
   const { data } = useGetUserQuery(userId);
-  console.log("🚀 ~ file: Layout.tsx:17 ~ Layout ~ data:", data);
 
   return (
     <Box display={isNonMobile ? "flex" : "block"} width="100%" height="100%">

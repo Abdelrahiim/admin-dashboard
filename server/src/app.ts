@@ -4,7 +4,7 @@ import morgan from "morgan";
 import fs from "fs";
 import cors from "cors";
 import { AppRouter } from "./app.router";
-import { ErrorHandleMiddleWare } from "./Middlewares";
+import { ErrorHandleMiddleWare, SetCache } from "./Middlewares";
 import "./Controllers";
 
 const app = express();
@@ -26,6 +26,8 @@ app.use(express.json());
 // for Cors
 app.use(cors());
 
+// Caching Middleware
+app.use(SetCache);
 // App Router
 app.use(AppRouter.getInstance());
 
