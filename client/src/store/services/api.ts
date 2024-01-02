@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Product, Transactions, User } from "../../types";
+import { GeographyData, Product, Transactions, User } from "../../types";
 
 interface TransactionsQuery {
   page?: number;
@@ -10,7 +10,7 @@ interface TransactionsQuery {
 
 export const api = createApi({
   reducerPath: "adminApi",
-  tagTypes: ["User", "Products", "Customers", "Transactions"],
+  tagTypes: ["User", "Products", "Customers", "Transactions", "Geography"],
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/" }),
   endpoints: (builder) => ({
     getUser: builder.query<User, string>({
@@ -36,6 +36,11 @@ export const api = createApi({
       }),
       providesTags: ["Transactions"],
     }),
+    getGeographyData: builder.query<GeographyData[], undefined>({
+      query: () => "/client/geography",
+
+      providesTags: ["Geography"],
+    }),
   }),
 });
 
@@ -44,4 +49,5 @@ export const {
   useGetProductsQuery,
   useGetCustomersQuery,
   useGetTransactionsQuery,
+  useGetGeographyDataQuery,
 } = api;

@@ -12,11 +12,14 @@ import {
 } from "react-router-dom";
 import { Layout } from "./components";
 import { Navigate } from "react-router-dom";
-import { Dashboard } from "./pages";
-import NotFoundPage from "./pages/404Not-FoundPage";
-import ProductsPage from "./pages/ProductsPage";
-import CustomersPage from "./pages/CustomersPage";
-import TransactionsPage from "./pages/TransactionsPage";
+import {
+  CustomersPage,
+  Dashboard,
+  GeographyPage,
+  NotFoundPage,
+  ProductsPage,
+  TransactionsPage,
+} from "./pages";
 
 /**
  * Creating router using new syntax
@@ -32,6 +35,7 @@ const router = createBrowserRouter(
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/customers" element={<CustomersPage />} />
       <Route path="/transactions" element={<TransactionsPage />} />
+      <Route path="/geography" element={<GeographyPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Route>
   )

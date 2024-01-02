@@ -55,3 +55,8 @@ export interface Transactions {
   createdAt: string;
   updatedAT: string;
 }
+
+export interface GeographyData {
+  id: string;
+  count: number;
+}
