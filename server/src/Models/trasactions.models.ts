@@ -11,7 +11,7 @@ import { Product } from "./product.model";
 })
 class TransactionsSchema {
   @prop()
-  useId?: string;
+  userId?: string;
   @prop()
   cost?: string;
   @prop({ ref: () => Product })

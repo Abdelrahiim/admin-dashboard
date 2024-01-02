@@ -4,10 +4,7 @@ import { Product, Transactions, User } from "../../types";
 interface TransactionsQuery {
   page?: number;
   pageSize?: number;
-  sort?: {
-    field: string;
-    sort: "asc" | "dsc";
-  };
+  sort?: string;
   search?: string;
 }
 

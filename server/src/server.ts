@@ -17,7 +17,7 @@ export async function startServer() {
    */
   // await Product.insertMany(dataProduct);
   // await ProductStat.insertMany(dataProductStat);
-  // await Transactions.insertMany(dataTransaction);
+
   server.listen(PORT, () => {
     console.log(
       `🚀 Server Running At ${blueBright(`http://localhost:${PORT}`)}`

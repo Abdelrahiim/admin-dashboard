@@ -49,14 +49,12 @@ export class ClientController {
       search = "",
     } = req.query;
 
-    const transactions = await clientService.getAllTransactions(
+    const { total, transactions } = await clientService.getAllTransactions(
       page,
       pageSize,
       search,
       sort
     );
-    return res
-      .status(StatusCodes.OK)
-      .json({ transactions, total: transactions.length });
+    return res.status(StatusCodes.OK).json({ transactions, total });
   }
 }

@@ -83,8 +83,12 @@ class ClientService {
       .sort(sortedFormatted)
       .skip(page * pageSize)
       .limit(pageSize);
+    const total = await Transactions.countDocuments({
+      cost: { $regex: search, $options: "i" },
+    });
+    console.log({ total });
 
-    return transactions;
+    return { total, transactions };
   }
   /**
    * return a formatted object the is suitable for mongodb

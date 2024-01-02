@@ -5,22 +5,27 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useState } from "react";
 import { Box, useTheme } from "@mui/material";
 import millify from "millify";
+import DataGridCustomToolbar from "../components/DataGridCustomToolbar";
+import { GridSortModel } from "@mui/x-data-grid";
 const TransactionsPage = () => {
   const theme = useTheme();
+  // values to be sent to the backend
+  // values to be sent to the backend
   const [paginationModel, setPaginationModel] = useState({
     page: 0,
     pageSize: 20,
   });
-  const [sort, setSort] = useState<
-    { felid: string; sort: "asc" | "desc" } | object
-  >({});
+  const [sort, setSort] = useState<GridSortModel>();
   const [search, setSearch] = useState("");
+
+  const [searchInput, setSearchInput] = useState("");
   const { data, isLoading } = useGetTransactionsQuery({
     page: paginationModel.page,
     pageSize: paginationModel.pageSize,
-    sort: JSON.stringify(sort),
-    search: search,
+    sort: JSON.stringify(sort ? sort[0] : {}),
+    search,
   });
+
   const columns: GridColDef[] = [
     {
       field: "_id",
@@ -51,6 +56,7 @@ const TransactionsPage = () => {
       renderCell: (params) => `$${millify(params.value)}`,
     },
   ];
+
   return (
     <Box sx={{ m: "1.5rem 2.5rem" }}>
       <PageHeader title="Transactions" subTitle="All transactions is here" />
@@ -89,24 +95,28 @@ const TransactionsPage = () => {
         }}
       >
         <DataGrid
-          // initialState={{
-          //   pagination: {
-          //     paginationModel: {
-          //       pageSize: 20,
-          //     },
-          //   },
-          // }}
-          pagination
           loading={isLoading || !data}
-          columns={columns}
           getRowId={(row) => row._id}
-          rows={data?.transactions || []}
+          rows={(data && data.transactions) || []}
+          columns={columns}
           rowCount={(data && data.total) || 0}
+          pageSizeOptions={[10, 20, 50]}
           paginationModel={paginationModel}
-          pageSizeOptions={[paginationModel.pageSize]}
-          onPaginationModelChange={setPaginationModel}
           paginationMode="server"
-        ></DataGrid>
+          sortingMode="server"
+          onSortModelChange={(sortModel) => setSort(sortModel)}
+          // onSortModelChange={(newSortModel) => setSort(...newSortModel)}
+          onPaginationModelChange={(model) =>
+            setPaginationModel({ page: model.page, pageSize: model.pageSize })
+          }
+          sortModel={sort}
+          slots={{
+            toolbar: DataGridCustomToolbar,
+          }}
+          slotProps={{
+            toolbar: { searchInput, setSearchInput, setSearch },
+          }}
+        />
       </Box>
     </Box>
   );
