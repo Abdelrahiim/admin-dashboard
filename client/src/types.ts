@@ -47,3 +47,11 @@ export interface Product {
   createdAt: string;
   updatedAT: string;
 }
+
+export interface Transactions {
+  useId?: string;
+  cost?: string;
+  products: string[];
+  createdAt: string;
+  updatedAT: string;
+}

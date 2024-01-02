@@ -1,7 +1,14 @@
+import { SortOrder } from "mongoose";
 import { NotFoundException } from "../../HttpExceptions";
 import { User } from "../../Models";
 import { ProductStat } from "../../Models/product-stat.model";
 import { Product } from "../../Models/product.model";
+import { Transactions } from "../../Models/trasactions.models";
+
+// for formatting sorting
+interface SortFormat {
+  [key: string]: "desc" | "asc";
+}
 
 /**
  * Client Service Responsible For all Business Logic
@@ -25,8 +32,9 @@ class ClientService {
             productId: product._id,
           });
           return {
-            // @ts-ignore
-            ...product._doc,
+            // important i spend a lot looking for it
+            // instead of the dumb thing product._doc
+            ...product.toObject(),
             stat,
           };
         })
@@ -49,6 +57,46 @@ class ClientService {
     } catch (e: any) {
       throw new NotFoundException(e.message);
     }
+  }
+
+  /**
+   * Return all transaction from body
+   * and adding some mods like pagination
+   */
+  public async getAllTransactions(
+    page: number,
+    pageSize: number,
+    search: string,
+    sort?: string
+  ) {
+    const sortedFormatted = sort ? this.generateSort(sort as string) : {};
+    const transactions = await Transactions.find({
+      $or: [
+        {
+          cost: { $regex: new RegExp(search, "i") },
+        },
+        {
+          useId: { $regex: new RegExp(search, "i") },
+        },
+      ],
+    })
+      .sort(sortedFormatted)
+      .skip(page * pageSize)
+      .limit(pageSize);
+
+    return transactions;
+  }
+  /**
+   * return a formatted object the is suitable for mongodb
+   * @param sort
+   * @returns
+   */
+  private generateSort(sort: string) {
+    const sortedParsed: { field: string; sort: string } = JSON.parse(sort);
+    const sortFormatted: SortFormat = {
+      [sortedParsed.field]: sortedParsed.sort == "asc" ? "asc" : "desc",
+    };
+    return sortFormatted;
   }
 }
 

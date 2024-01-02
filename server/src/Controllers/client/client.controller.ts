@@ -26,4 +26,37 @@ export class ClientController {
     const customer = await clientService.getNonAdminUsers();
     return res.status(StatusCodes.OK).json(customer);
   }
+
+  /**
+   * @route /client/transactions
+   * @method GET
+   * @return List Of transactions
+   */
+  @Get("/transactions")
+  public async listTransactions(
+    req: Request<
+      {},
+      {},
+      {},
+      { page?: number; pageSize?: number; sort?: string; search?: string }
+    >,
+    res: Response
+  ) {
+    const {
+      page = 1,
+      pageSize = 20,
+      sort = undefined,
+      search = "",
+    } = req.query;
+
+    const transactions = await clientService.getAllTransactions(
+      page,
+      pageSize,
+      search,
+      sort
+    );
+    return res
+      .status(StatusCodes.OK)
+      .json({ transactions, total: transactions.length });
+  }
 }

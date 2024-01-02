@@ -16,6 +16,7 @@ import { Dashboard } from "./pages";
 import NotFoundPage from "./pages/404Not-FoundPage";
 import ProductsPage from "./pages/ProductsPage";
 import CustomersPage from "./pages/CustomersPage";
+import TransactionsPage from "./pages/TransactionsPage";
 
 /**
  * Creating router using new syntax
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/customers" element={<CustomersPage />} />
+      <Route path="/transactions" element={<TransactionsPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Route>
   )

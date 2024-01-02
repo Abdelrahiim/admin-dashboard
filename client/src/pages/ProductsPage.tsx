@@ -6,6 +6,7 @@ import { PageHeader } from "../components";
 import ProductComponent from "../components/Product";
 import { useState } from "react";
 
+
 const ProductsPage = () => {
   const { data, isLoading } = useGetProductsQuery(undefined);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
