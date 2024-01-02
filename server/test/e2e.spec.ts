@@ -3,12 +3,15 @@ import { connectMongo, disconnectMongo } from "../src/Config/database";
 import { green } from "colorette";
 import { StatusCodes } from "http-status-codes";
 import { app } from "../src/app";
+import { Transactions } from "../src/Models/trasactions.models";
+import { dataTransaction } from "../src/data";
 
 describe("Test E2E", () => {
   const Client = supertest(app);
   // Connect To The Database Before All Tests
   beforeAll(async () => {
     await connectMongo();
+    // await Transactions.insertMany(dataTransaction);
   });
   // Disconnect From The Database After All Tests Done
   afterAll(async () => {
@@ -54,6 +57,39 @@ describe("Test E2E", () => {
   describe(`Test ${green("GET")} client/customers`, () => {
     it("It Should Return response 200 OK And Content-Type = Application/json", async () => {
       await Client.get("/client/customers")
+        .expect(StatusCodes.OK)
+        .expect("Content-type", /json/);
+    });
+  });
+  /**
+   * Test Get All transactions
+   * @route /client/transactions
+   * @method GET
+   */
+  describe(`Test ${green("GET")} /client/transactions`, () => {
+    it("It Should Return response 200 OK And Content-Type = Application/json", async () => {
+      const res = await Client.get("/client/transactions?page=1")
+        .expect(StatusCodes.OK)
+        .expect("Content-type", /json/);
+      expect(res.body.total).toBe(500);
+      expect(res.body.transactions.length).toBe(20);
+    });
+    it("It Should Return response 200 OK And Content-Type = Application/json And Pagesize = 5", async () => {
+      const res = await Client.get("/client/transactions?page=1&pageSize=5")
+        .expect(StatusCodes.OK)
+        .expect("Content-type", /json/);
+      expect(res.body.total).toBe(500);
+      expect(res.body.transactions.length).toBe(5);
+    });
+  });
+  /**
+   * Test Get GeoData
+   * @route /client/transaction
+   * @method GET
+   */
+  describe(`Test ${green("GET")} /client/geography`, () => {
+    it("It Should Return response 200 OK And Content-Type = Application/json", async () => {
+      await Client.get("/client/geography")
         .expect(StatusCodes.OK)
         .expect("Content-type", /json/);
     });

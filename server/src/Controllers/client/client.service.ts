@@ -4,7 +4,8 @@ import { User } from "../../Models";
 import { ProductStat } from "../../Models/product-stat.model";
 import { Product } from "../../Models/product.model";
 import { Transactions } from "../../Models/trasactions.models";
-
+// @ts-ignore
+import getCountryISO3 from "country-iso-2-to-3";
 // for formatting sorting
 interface SortFormat {
   [key: string]: "desc" | "asc";
@@ -89,6 +90,39 @@ class ClientService {
     console.log({ total });
 
     return { total, transactions };
+  }
+  /**
+   * Return all user group by country
+   * and The Count it is like
+   * * SELECT count(id) as count , country FROM user
+   * * Group by county ;
+   * in SQL
+   * but also format the country code for 2 character to 3
+   * @returns the new codes in this format
+   * {id:"NIC",count:1}
+   */
+  public async getAllGeography() {
+    /**
+     * mongo aggregate
+     * ! remember to read more about it
+     */
+    try {
+      const codes = await User.aggregate([
+        {
+          $group: {
+            _id: "$country",
+            count: { $sum: 1 },
+          },
+        },
+      ]);
+
+      const newCodes = codes.map((code): { id: string; value: number } => {
+        return { id: getCountryISO3(code._id), value: code.count };
+      });
+      return newCodes;
+    } catch (e) {
+      throw new NotFoundException("Not Found");
+    }
   }
   /**
    * return a formatted object the is suitable for mongodb

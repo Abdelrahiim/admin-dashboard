@@ -2,6 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import { Controller, Get } from "../../decorators";
 import { Request, Response } from "express";
 import { clientService } from "./client.service";
+import { rmSync } from "fs";
 
 @Controller("/client")
 export class ClientController {
@@ -56,5 +57,10 @@ export class ClientController {
       sort
     );
     return res.status(StatusCodes.OK).json({ transactions, total });
+  }
+  @Get("/geography")
+  public async listGeography(req: Request, res: Response) {
+    const geography = await clientService.getAllGeography();
+    return res.status(StatusCodes.OK).json(geography);
   }
 }
