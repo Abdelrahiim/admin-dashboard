@@ -3,15 +3,12 @@ import { connectMongo, disconnectMongo } from "../src/Config/database";
 import { green } from "colorette";
 import { StatusCodes } from "http-status-codes";
 import { app } from "../src/app";
-import { Transactions } from "../src/Models/trasactions.models";
-import { dataTransaction } from "../src/data";
 
 describe("Test E2E", () => {
   const Client = supertest(app);
   // Connect To The Database Before All Tests
   beforeAll(async () => {
     await connectMongo();
-    // await Transactions.insertMany(dataTransaction);
   });
   // Disconnect From The Database After All Tests Done
   afterAll(async () => {
@@ -90,6 +87,19 @@ describe("Test E2E", () => {
   describe(`Test ${green("GET")} /client/geography`, () => {
     it("It Should Return response 200 OK And Content-Type = Application/json", async () => {
       await Client.get("/client/geography")
+        .expect(StatusCodes.OK)
+        .expect("Content-type", /json/);
+    });
+  });
+
+  /**
+   * Test Get overAll Sales Stats
+   * @route /sales
+   * @method GET
+   */
+  describe(`Test ${green("GET")} /sales`, () => {
+    it("It Should Return response 200 OK And Content-Type = Application/json", async () => {
+      await Client.get("/sales")
         .expect(StatusCodes.OK)
         .expect("Content-type", /json/);
     });

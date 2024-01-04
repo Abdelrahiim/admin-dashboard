@@ -24,7 +24,7 @@ describe("Testing Client Service", () => {
       expect(geoData).toBeTruthy();
       for (const data of geoData) {
         expect(data.id).toBeTruthy();
-        expect(data.count).toBeTruthy();
+        expect(data.value).toBeTruthy();
       }
     });
   });

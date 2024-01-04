@@ -10,7 +10,7 @@ import { ProductSchema } from "./product.model";
  * helper class for represent
  * nested Monthly Data
  */
-class MonthlyData {
+export class MonthlyData {
   @prop()
   month?: string;
   @prop()
@@ -23,7 +23,7 @@ class MonthlyData {
  * helper class for represent
  * nested Daily Data
  */
-class DailyData {
+export class DailyData {
   @prop()
   date?: string;
   @prop()

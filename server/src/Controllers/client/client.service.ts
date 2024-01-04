@@ -1,11 +1,8 @@
-import { SortOrder } from "mongoose";
 import { NotFoundException } from "../../HttpExceptions";
-import { User } from "../../Models";
-import { ProductStat } from "../../Models/product-stat.model";
-import { Product } from "../../Models/product.model";
-import { Transactions } from "../../Models/trasactions.models";
+
 // @ts-ignore
 import getCountryISO3 from "country-iso-2-to-3";
+import { Product, ProductStat, User, Transactions } from "../../Models";
 // for formatting sorting
 interface SortFormat {
   [key: string]: "desc" | "asc";
