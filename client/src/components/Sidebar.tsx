@@ -25,15 +25,15 @@ import {
   // ShoppingCart,
   ReceiptLongOutlined,
   PublicOutlined,
-  PointOfSaleOutlined,
-  TodayOutlined,
-  CalendarMonthOutlined,
   AdminPanelSettingsOutlined,
   TrendingUpOutlined,
   PieChartOutlined,
   ShoppingCartOutlined,
   Groups2Outlined,
   SettingsOutlined,
+  CalendarMonthOutlined,
+  PointOfSaleOutlined,
+  TodayOutlined,
 } from "@mui/icons-material";
 import profileImage from "../assets/393635635_3537098063168999_981925921939371583_n.jpg";
 import { useState, useEffect } from "react";

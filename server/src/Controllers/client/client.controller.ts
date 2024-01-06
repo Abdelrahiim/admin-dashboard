@@ -2,7 +2,6 @@ import { StatusCodes } from "http-status-codes";
 import { Controller, Get } from "../../decorators";
 import { Request, Response } from "express";
 import { clientService } from "./client.service";
-import { rmSync } from "fs";
 
 @Controller("/client")
 export class ClientController {

@@ -14,11 +14,15 @@ import { Layout } from "./components";
 import { Navigate } from "react-router-dom";
 import {
   CustomersPage,
+  DailyPage,
   Dashboard,
   GeographyPage,
+  MonthlyPage,
   NotFoundPage,
   ProductsPage,
   TransactionsPage,
+  OverviewPage,
+  BreakdownPage,
 } from "./pages";
 
 /**
@@ -36,6 +40,10 @@ const router = createBrowserRouter(
       <Route path="/customers" element={<CustomersPage />} />
       <Route path="/transactions" element={<TransactionsPage />} />
       <Route path="/geography" element={<GeographyPage />} />
+      <Route path="/overview" element={<OverviewPage />} />
+      <Route path="/daily" element={<DailyPage />} />
+      <Route path="/monthly" element={<MonthlyPage />} />
+      <Route path="/breakdown" element={<BreakdownPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Route>
   )

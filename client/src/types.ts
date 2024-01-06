@@ -11,16 +11,16 @@ export interface User {
   role: string;
 }
 
-interface MonthlyData {
-  month?: string;
-  totalSales?: number;
-  totalUnits?: number;
+export interface MonthlyData {
+  month: string;
+  totalSales: number;
+  totalUnits: number;
 }
 
-interface DailyData {
-  date?: string;
-  totalSales?: number;
-  totalUnits?: number;
+export interface DailyData {
+  date: string;
+  totalSales: number;
+  totalUnits: number;
 }
 
 export interface ProductStat {
@@ -49,6 +49,7 @@ export interface Product {
 }
 
 export interface Transactions {
+  _id: string;
   useId?: string;
   cost?: string;
   products: string[];
@@ -59,4 +60,19 @@ export interface Transactions {
 export interface GeographyData {
   id: string;
   count: number;
+}
+
+export interface OverAllStat {
+  _id: string;
+  productId: string;
+  yearlySalesTotal?: number;
+  yearlyTotalSoldUnits?: number;
+  year?: number;
+  monthlyData: MonthlyData[];
+  dailyData: DailyData[];
+  salesByCategory: {
+    [key: string]: number;
+  };
+  createdAt: string;
+  updatedAT: string;
 }

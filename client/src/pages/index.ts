@@ -4,3 +4,7 @@ export { default as NotFoundPage } from "./404Not-FoundPage";
 export { default as TransactionsPage } from "./TransactionsPage";
 export { default as ProductsPage } from "./ProductsPage";
 export { default as GeographyPage } from "./GeographyPage";
+export { default as DailyPage } from "./DailyPage";
+export { default as MonthlyPage } from "./MonthlyPage";
+export { default as OverviewPage } from "./OverViewPage";
+export { default as BreakdownPage } from "./BreakdownPage";
