@@ -56,6 +56,20 @@ class ClientService {
       throw new NotFoundException(e.message);
     }
   }
+  /**
+   *
+   * @returns return all users in db that has role === "user"
+   */
+  public async getAdminUsers() {
+    try {
+      const users = await User.find({
+        role: "admin" || "superadmin",
+      }).select("-password");
+      return users;
+    } catch (e: any) {
+      throw new NotFoundException(e.message);
+    }
+  }
 
   /**
    * Return all transaction from body

@@ -23,6 +23,7 @@ export const api = createApi({
     "Transactions",
     "Geography",
     "Sales",
+    "Admins",
   ],
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/" }),
   endpoints: (builder) => ({
@@ -58,6 +59,10 @@ export const api = createApi({
       query: () => "/sales",
       providesTags: ["Sales"],
     }),
+    getAdmins: builder.query<User[], undefined>({
+      query: () => "/management/admins",
+      providesTags: ["Admins"],
+    }),
   }),
 });
 
@@ -68,4 +73,5 @@ export const {
   useGetTransactionsQuery,
   useGetGeographyDataQuery,
   useGetSalesQuery,
+  useGetAdminsQuery,
 } = api;

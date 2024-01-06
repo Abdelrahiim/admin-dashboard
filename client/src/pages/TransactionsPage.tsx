@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useGetTransactionsQuery } from "../store/services/api";
-import { PageHeader } from "../components";
+import { DataGridCustomToolbar, PageHeader } from "../components";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useState } from "react";
 import { Box, useTheme } from "@mui/material";
 import millify from "millify";
-import DataGridCustomToolbar from "../components/DataGridCustomToolbar";
+
 import { GridSortModel } from "@mui/x-data-grid";
 const TransactionsPage = () => {
   const theme = useTheme();

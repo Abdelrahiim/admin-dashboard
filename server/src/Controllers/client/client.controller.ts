@@ -57,6 +57,11 @@ export class ClientController {
     );
     return res.status(StatusCodes.OK).json({ transactions, total });
   }
+  /**
+   * @route /client/geography
+   * @method GET
+   * @return List Geography Data
+   */
   @Get("/geography")
   public async listGeography(req: Request, res: Response) {
     const geography = await clientService.getAllGeography();

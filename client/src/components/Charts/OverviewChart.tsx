@@ -3,19 +3,11 @@ import { FC, useMemo } from "react";
 import { useGetSalesQuery } from "../../store/services/api";
 import { ResponsiveLine } from "@nivo/line";
 import { Box, CircularProgress, useTheme } from "@mui/material";
+import { FormattedDataShape } from "../../types";
 
 interface OverviewChartProps {
   isDashboard?: boolean;
   view: string;
-}
-
-interface FormattedDataShape {
-  id: string;
-  data: Array<{
-    x: number | string | Date;
-    y: number | string | Date;
-  }>;
-  color?: string;
 }
 
 const OverviewChart: FC<OverviewChartProps> = ({

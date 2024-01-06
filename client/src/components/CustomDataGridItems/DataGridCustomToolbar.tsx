@@ -7,7 +7,7 @@ import {
   GridToolbarColumnsButton,
 } from "@mui/x-data-grid";
 
-import { FlexBetween } from ".";
+import { FlexBetween } from "..";
 import { Search } from "@mui/icons-material";
 interface DataGridCustomToolbarProps {
   searchInput: string;

@@ -104,4 +104,17 @@ describe("Test E2E", () => {
         .expect("Content-type", /json/);
     });
   });
+  /**
+   * Test Get overAll Sales Stats
+   * @route /management/admin
+   * @method GET
+   */
+  describe(`Test ${green("GET")} management/admins`, () => {
+    it("It Should Return response 200 OK And Content-Type = Application/json", async () => {
+      const res = await Client.get("/client/admins")
+        .expect(StatusCodes.OK)
+        .expect("Content-type", /json/);
+      expect(res.body.length).toBeGreaterThan(0);
+    });
+  });
 });

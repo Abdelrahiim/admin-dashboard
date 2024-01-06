@@ -1,7 +1,6 @@
 import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { PageHeader } from "../components";
+import { OverviewChart, PageHeader } from "../components";
 import { useState } from "react";
-import { OverviewChart } from "../components/Charts";
 
 const OverViewPage = () => {
   const [view, setView] = useState("units");

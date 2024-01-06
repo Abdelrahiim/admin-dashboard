@@ -8,3 +8,5 @@ export { default as DailyPage } from "./DailyPage";
 export { default as MonthlyPage } from "./MonthlyPage";
 export { default as OverviewPage } from "./OverViewPage";
 export { default as BreakdownPage } from "./BreakdownPage";
+export { default as AdminsPage } from "./AdminsPage";
+export { default as PerformancePage } from "./PerformancePage";

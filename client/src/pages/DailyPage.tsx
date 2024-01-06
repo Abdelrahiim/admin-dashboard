@@ -10,15 +10,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs, { Dayjs } from "dayjs";
-
-interface FormattedDataShape {
-  id: string;
-  data: Array<{
-    x: number | string;
-    y: number | string;
-  }>;
-  color?: string;
-}
+import { FormattedDataShape } from "../types";
 
 const DailyPage = () => {
   const theme = useTheme();

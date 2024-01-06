@@ -18,6 +18,7 @@ describe("Testing Client Service", () => {
       }
     });
   });
+
   describe("Test List all user Geography", () => {
     it("It Should Return All Country codes with the number of users in every country", async () => {
       const geoData = await clientService.getAllGeography();

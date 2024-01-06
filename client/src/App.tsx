@@ -23,6 +23,8 @@ import {
   TransactionsPage,
   OverviewPage,
   BreakdownPage,
+  AdminsPage,
+  PerformancePage,
 } from "./pages";
 
 /**
@@ -44,6 +46,8 @@ const router = createBrowserRouter(
       <Route path="/daily" element={<DailyPage />} />
       <Route path="/monthly" element={<MonthlyPage />} />
       <Route path="/breakdown" element={<BreakdownPage />} />
+      <Route path="/admin" element={<AdminsPage />} />
+      <Route path="/performance" element={<PerformancePage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Route>
   )
