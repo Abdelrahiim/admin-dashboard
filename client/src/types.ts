@@ -48,6 +48,14 @@ export interface Product {
   updatedAT: string;
 }
 
+export interface FormattedDataShape {
+  id: string;
+  data: Array<{
+    x: number | string;
+    y: number | string;
+  }>;
+  color?: string;
+}
 export interface Transactions {
   _id: string;
   useId?: string;
