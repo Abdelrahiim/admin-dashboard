@@ -97,7 +97,7 @@ export interface DashboardData {
   salesByCategory: {
     [key: string]: number;
   };
-  thisMonthStats: MonthlyData[];
-  todayStats: DailyData[];
+  thisMonthStats: MonthlyData;
+  todayStats: DailyData;
   transactions: Transactions[];
 }
