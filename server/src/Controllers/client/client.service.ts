@@ -22,21 +22,18 @@ class ClientService {
    */
   public async getProducts() {
     try {
-      const products = await Product.find();
-      // this is the worse block of code i have ever done
-      const productsWithStats = await Promise.all(
-        products.map(async (product) => {
-          const stat = await ProductStat.find({
-            productId: product._id,
-          });
-          return {
-            // important i spend a lot looking for it
-            // instead of the dumb thing product._doc
-            ...product.toObject(),
-            stat,
-          };
-        })
-      );
+      // relations in mongo db is not ideal but still much better that what i was doing before
+      const productsWithStats = await Product.aggregate([
+        {
+          $lookup: {
+            from: "product-stat",
+            localField: "_id",
+            foreignField: "productId",
+            as: "stat",
+          },
+        },
+      ]);
+
       return productsWithStats;
     } catch (e: unknown) {
       throw new NotFoundException("Not Found");

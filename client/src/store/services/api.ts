@@ -1,10 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
+  DashboardData,
   GeographyData,
   OverAllStat,
   Product,
   Transactions,
   User,
+  UserWithStats,
 } from "../../types";
 
 interface TransactionsQuery {
@@ -24,6 +26,8 @@ export const api = createApi({
     "Geography",
     "Sales",
     "Admins",
+    "Performance",
+    "Dashboard",
   ],
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/" }),
   endpoints: (builder) => ({
@@ -63,6 +67,14 @@ export const api = createApi({
       query: () => "/management/admins",
       providesTags: ["Admins"],
     }),
+    getUserPerformance: builder.query<UserWithStats, string>({
+      query: (id: string) => `/management/performance/${id}`,
+      providesTags: ["Performance"],
+    }),
+    getDashboard: builder.query<DashboardData, undefined>({
+      query: () => "/general",
+      providesTags: ["Dashboard"],
+    }),
   }),
 });
 
@@ -74,4 +86,6 @@ export const {
   useGetGeographyDataQuery,
   useGetSalesQuery,
   useGetAdminsQuery,
+  useGetUserPerformanceQuery,
+  useGetDashboardQuery,
 } = api;

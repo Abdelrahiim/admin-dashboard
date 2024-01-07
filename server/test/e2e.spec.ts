@@ -111,10 +111,33 @@ describe("Test E2E", () => {
    */
   describe(`Test ${green("GET")} management/admins`, () => {
     it("It Should Return response 200 OK And Content-Type = Application/json", async () => {
-      const res = await Client.get("/client/admins")
+      const res = await Client.get("/management/admins")
         .expect(StatusCodes.OK)
         .expect("Content-type", /json/);
       expect(res.body.length).toBeGreaterThan(0);
+    });
+  });
+  /**
+   * Test Get User Performance Stats
+   * @route /management/performance/:id
+   * @method GET
+   */
+  describe(`Test ${green("GET")} management/performance`, () => {
+    it("It Should Return response 200 OK And Content-Type = Application/json", async () => {
+      const res = await Client.get(
+        "/management/performance/63701cc1f03239f09e00018a"
+      )
+        .expect(StatusCodes.OK)
+        .expect("Content-type", /json/);
+      expect(res.body).toBeTruthy();
+    });
+    it("It Should Return response 404 OK And Content-Type = Application/json", async () => {
+      const res = await Client.get(
+        "/management/performance/63701cc1f03239c72c00017f"
+      )
+        .expect(StatusCodes.NOT_FOUND)
+        .expect("Content-type", /json/);
+      expect(res.body.error).toBe("Not Found");
     });
   });
 });

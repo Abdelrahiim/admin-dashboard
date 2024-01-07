@@ -4,7 +4,7 @@ import {
   getModelForClass,
   Ref,
 } from "@typegoose/typegoose";
-import { ProductSchema } from "./product.model";
+import { Product } from "./product.model";
 
 /**
  * helper class for represent
@@ -42,8 +42,8 @@ export class DailyData {
   schemaOptions: { timestamps: true, collection: "product-stat" },
 })
 export class ProductStatSchema {
-  @prop({ required: true })
-  productId!: string;
+  @prop({ required: true, ref: () => Product })
+  productId!: Ref<typeof Product>;
   @prop()
   yearlySalesTotal?: number;
   @prop()

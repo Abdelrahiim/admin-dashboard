@@ -15,7 +15,7 @@ class TransactionsSchema {
   @prop()
   cost?: string;
   @prop({ ref: () => Product })
-  public products?: Ref<typeof Product>[];
+  products?: Ref<typeof Product>[];
 }
 
 export const Transactions = getModelForClass(TransactionsSchema);

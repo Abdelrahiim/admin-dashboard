@@ -84,3 +84,20 @@ export interface OverAllStat {
   createdAt: string;
   updatedAT: string;
 }
+
+export interface UserWithStats extends User {
+  user: User;
+  sales: Transactions[];
+}
+export interface DashboardData {
+  totalCustomers: number;
+  yearlyTotalSoldUnits: number;
+  yearlySalesTotal: number;
+  monthlyData: MonthlyData;
+  salesByCategory: {
+    [key: string]: number;
+  };
+  thisMonthStats: MonthlyData[];
+  todayStats: DailyData[];
+  transactions: Transactions[];
+}

@@ -4,6 +4,7 @@ import { app } from "./app";
 import * as http from "http";
 import { PORT } from "./Utils/settings";
 import {
+  dataAffiliateStat,
   dataOverallStat,
   dataProduct,
   dataProductStat,
@@ -12,7 +13,8 @@ import {
 } from "./data";
 import { ProductStat } from "./Models/product-stat.model";
 import { Transactions } from "./Models/transactions.models";
-import { OverallStat, Product, User } from "./Models";
+import { AffiliateStat, OverallStat, Product, User } from "./Models";
+import { managementService } from "./Controllers/management/management.service";
 
 const server = http.createServer(app);
 
@@ -27,6 +29,7 @@ export async function startServer() {
   // await ProductStat.insertMany(dataProductStat);
   // await Transactions.insertMany(dataTransaction);
   // await OverallStat.insertMany(dataOverallStat);
+  // await AffiliateStat.insertMany(dataAffiliateStat);
 
   server.listen(PORT, () => {
     console.log(

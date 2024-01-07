@@ -1,6 +1,4 @@
 import { connectMongo, disconnectMongo } from "../../Config/database";
-import { OverallStat } from "../../Models";
-import { dataOverallStat } from "../../data";
 import { salesService } from "./sales.service";
 
 describe("Testing Sales Service", () => {

@@ -193,7 +193,7 @@ const config: Config = {
   // watchman: true,
   preset: "ts-jest",
   testEnvironment: "node",
-  verbose: true,
+  // verbose: true,
 };
 
 export default config;

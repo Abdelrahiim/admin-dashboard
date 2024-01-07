@@ -11,4 +11,10 @@ export class GeneralController {
     const user = await generalService.findUser(id);
     return res.status(StatusCodes.OK).json(user);
   }
+
+  @Get()
+  async getDashBoardData(req: Request, res: Response) {
+    const data = await generalService.getData();
+    return res.status(StatusCodes.OK).json(data);
+  }
 }
