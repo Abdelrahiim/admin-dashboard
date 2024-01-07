@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon src/server.ts",
     "build": "tsc --project tsconfig.build.json",
-    "start": "node dist/server.ts",
+    "start": "node dist/server.js",
     "test": "dotenv -e .env.test -- jest --no-cache --roots src",
     "test:e2e": "dotenv -e .env.test -- jest  --no-cache --roots test",
     "test:all": "dotenv -e .env.test -- jest"

@@ -29,7 +29,9 @@ export const api = createApi({
     "Performance",
     "Dashboard",
   ],
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://admin-dashboard-api-ffcj.onrender.com/",
+  }),
   endpoints: (builder) => ({
     getUser: builder.query<User, string>({
       query: (userId: string) => `general/user/${userId}`,
