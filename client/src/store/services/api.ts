@@ -30,8 +30,9 @@ export const api = createApi({
     "Dashboard",
   ],
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://admin-dashboard-api-ffcj.onrender.com/",
+    baseUrl: import.meta.env.VITE_API_URL,
   }),
+
   endpoints: (builder) => ({
     getUser: builder.query<User, string>({
       query: (userId: string) => `general/user/${userId}`,
